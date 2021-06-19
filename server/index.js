@@ -6,12 +6,14 @@ const mongoose = require("mongoose");
 const URL =
   "mongodb+srv://root:root@cluster0.llw9u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
+const router = require("./router/index");
 const PORT = 5000;
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+app.use("/api", router);
 
 const start = async () => {
   try {
