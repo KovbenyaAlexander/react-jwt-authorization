@@ -22,7 +22,9 @@ const start = async () => {
       useUnifiedTopology: true,
     });
 
-    app.listen(PORT, () => console.log(`STAAART - ${PORT}`));
+    app.listen(PORT, () => {
+      console.log(`STAAART - ${PORT}`);
+    });
   } catch (e) {
     console.log(e);
   }
