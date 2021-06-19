@@ -7,7 +7,7 @@ const URL =
   "mongodb+srv://root:root@cluster0.llw9u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const router = require("./router/index");
-const PORT = 5000;
+const PORT = 2000;
 const app = express();
 
 app.use(express.json());
@@ -21,7 +21,8 @@ const start = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log(`STAAART - ${PORT}`);
+
+    app.listen(PORT, () => console.log(`STAAART - ${PORT}`));
   } catch (e) {
     console.log(e);
   }
