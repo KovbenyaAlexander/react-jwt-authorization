@@ -5,6 +5,7 @@ const mailServise = require("./mailService");
 const tokenService = require("./tokenService");
 const UserDto = require("../dtos/userDto");
 const apiError = require("../exceptions/apiError");
+const ApiError = require("../exceptions/apiError");
 
 class UserService {
   async registration(email, password) {
@@ -31,7 +32,7 @@ class UserService {
 
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ ...userDto });
-    // await tokenService.saveToken(userDto.id, tokens.refreshToken);
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
 
     return {
       ...tokens,
@@ -47,6 +48,29 @@ class UserService {
 
     user.isActivated = true;
     await user.save();
+  }
+
+  async login(email, password) {
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      throw ApiError.BadRequest("User not found");
+    }
+    const isPassEquals = await bcrypt.compare(password, user.password);
+
+    if (!isPassEquals) {
+      throw ApiError.BadRequest("Invalid password");
+    }
+
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateToken({ ...userDto });
+    // const tokens = tokenService.generateToken(userDto);
+
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+    return {
+      ...tokens,
+      user: userDto,
+    };
   }
 }
 
