@@ -42,8 +42,8 @@ class UserService {
 
   async activate(activationLink) {
     const user = await UserModel.findOne({ activationLink });
-    if (user) {
-      throw apiError.BadRequest("Activation error");
+    if (!user) {
+      throw apiError.BadRequest(`Activation error`);
     }
 
     user.isActivated = true;
@@ -71,6 +71,11 @@ class UserService {
       ...tokens,
       user: userDto,
     };
+  }
+
+  async logout(refreshToken) {
+    const token = await tokenService.removeToken(refreshToken);
+    return token;
   }
 }
 
