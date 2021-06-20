@@ -4,13 +4,14 @@ const uuid = require("uuid");
 const mailServise = require("./mailService");
 const tokenService = require("./tokenService");
 const UserDto = require("../dtos/userDto");
+const apiError = require("../exceptions/apiError");
 
 class UserService {
   async registration(email, password) {
     const candidate = await UserModel.findOne({ email });
 
     if (candidate) {
-      console.log("alreadyExist");
+      throw apiError.BadRequest("User already exist");
     }
 
     const activationLink = uuid.v4();
@@ -36,6 +37,16 @@ class UserService {
       ...tokens,
       user: userDto,
     };
+  }
+
+  async activate(activationLink) {
+    const user = await UserModel.findOne({ activationLink });
+    if (user) {
+      throw apiError.BadRequest("Activation error");
+    }
+
+    user.isActivated = true;
+    await user.save();
   }
 }
 

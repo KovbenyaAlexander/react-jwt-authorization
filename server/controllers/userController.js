@@ -17,19 +17,47 @@ class UserController {
 
       return res.json(userData);
     } catch (e) {
-      res.json(e);
+      next(e);
     }
   }
 
-  async login(req, res, next) {}
+  async login(req, res, next) {
+    try {
+    } catch (e) {
+      next(e);
+    }
+  }
 
-  async logout(req, res, next) {}
+  async logout(req, res, next) {
+    try {
+    } catch (e) {
+      next(e);
+    }
+  }
 
-  async activate(req, res, next) {}
+  async activate(req, res, next) {
+    try {
+      const activationLink = req.params.link;
+      await userService.activate(activationLink);
+      return res.redirect(process.env.CLIENT_URL);
+    } catch (e) {
+      next(e);
+    }
+  }
 
-  async refresh(req, res, next) {}
+  async refresh(req, res, next) {
+    try {
+    } catch (e) {
+      next(e);
+    }
+  }
 
-  async getUsers(req, res, next) {}
+  async getUsers(req, res, next) {
+    try {
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 module.exports = new UserController();
