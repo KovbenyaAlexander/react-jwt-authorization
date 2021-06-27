@@ -4,12 +4,16 @@ import checkAuth from "./redux/actions/thunk/checkAuth";
 import { connect } from "react-redux";
 import logout from "./redux/actions/thunk/logout";
 
-function App({ isAuth, checkAuth, userEmail, logout }) {
+function App({ isAuth, checkAuth, userEmail, logout, isLoading }) {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       checkAuth();
     }
   }, []);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   if (isAuth) {
     return (
@@ -32,6 +36,7 @@ function App({ isAuth, checkAuth, userEmail, logout }) {
 
 const mapStateToProps = (state) => {
   return {
+    isLoading: state.isLoading,
     isAuth: state.isAuth,
     userEmail: state.user?.email,
   };

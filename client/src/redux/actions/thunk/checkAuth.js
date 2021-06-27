@@ -1,10 +1,11 @@
-import { setAuth, setUser } from "../actions";
+import { setAuth, setUser, setLoadingStatus } from "../actions";
 import axios from "axios";
 
 const API_URL = "http://localhost:5000/api";
 
 const checkAuth = () => {
   return (dispatch) => {
+    dispatch(setLoadingStatus(true));
     try {
       const response = axios.get(`${API_URL}/refresh`, {
         withCredentials: true,
@@ -16,6 +17,8 @@ const checkAuth = () => {
       });
     } catch (e) {
       console.log(e);
+    } finally {
+      dispatch(setLoadingStatus(false));
     }
   };
 };
