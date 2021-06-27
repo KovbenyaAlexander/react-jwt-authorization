@@ -1,5 +1,5 @@
 import AuthService from "../../../services/AuthService";
-import { setAuth } from "../actions";
+import { setAuth, setUser } from "../actions";
 
 const logout = () => {
   return (dispatch) => {
