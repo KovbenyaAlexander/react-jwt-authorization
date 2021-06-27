@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Form = () => {
+const Form = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,8 +19,10 @@ const Form = () => {
         value={password}
         type="text"
       />
+      <br />
       <button>Login</button>
       <button>Registration</button>
+      <br />
     </div>
   );
 };
