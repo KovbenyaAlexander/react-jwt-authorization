@@ -1,9 +1,15 @@
-import { SET_USER, SET_AUTH, SET_LOADING_STATUS } from "./actions/actionsTypes";
+import {
+  SET_USER,
+  SET_AUTH,
+  SET_LOADING_STATUS,
+  SET_USERS_DATA,
+} from "./actions/actionsTypes";
 
 const initialState = {
   isAuth: null,
   user: null,
   isLoading: false,
+  usersData: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -18,6 +24,11 @@ export default function reducer(state = initialState, action) {
 
     case SET_LOADING_STATUS:
       return { ...state, isLoading: action.payload };
+
+    case SET_USERS_DATA:
+      console.log({ ...state, usersData: action.payload });
+
+      return { ...state, usersData: action.payload };
     default:
       return state;
   }

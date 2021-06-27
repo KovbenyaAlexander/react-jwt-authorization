@@ -27,6 +27,7 @@ const Form = ({ login, registration }) => {
       <button onClick={() => registration(email, password)}>
         Registration
       </button>
+
       <br />
     </div>
   );

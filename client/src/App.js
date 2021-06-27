@@ -3,8 +3,16 @@ import { useEffect } from "react";
 import checkAuth from "./redux/actions/thunk/checkAuth";
 import { connect } from "react-redux";
 import logout from "./redux/actions/thunk/logout";
+import getUsersData from "./redux/actions/thunk/getUsersData";
 
-function App({ isAuth, checkAuth, userEmail, logout, isLoading }) {
+function App({
+  isAuth,
+  checkAuth,
+  userEmail,
+  logout,
+  isLoading,
+  getUsersData,
+}) {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       checkAuth();
@@ -20,6 +28,7 @@ function App({ isAuth, checkAuth, userEmail, logout, isLoading }) {
       <div className="App">
         <p>{userEmail}</p>
         <button onClick={logout}>Logout</button>
+        <button onClick={getUsersData}>Get users</button>
       </div>
     );
   }
@@ -49,6 +58,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     logout: () => {
       dispatch(logout());
+    },
+    getUsersData: () => {
+      dispatch(getUsersData());
     },
   };
 };
