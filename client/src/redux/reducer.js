@@ -26,8 +26,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, isLoading: action.payload };
 
     case SET_USERS_DATA:
-      console.log({ ...state, usersData: action.payload });
-
       return { ...state, usersData: action.payload };
     default:
       return state;

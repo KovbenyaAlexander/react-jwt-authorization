@@ -4,6 +4,7 @@ import checkAuth from "./redux/actions/thunk/checkAuth";
 import { connect } from "react-redux";
 import logout from "./redux/actions/thunk/logout";
 import getUsersData from "./redux/actions/thunk/getUsersData";
+import UsersData from "./components/UsersData";
 
 function App({
   isAuth,
@@ -12,6 +13,7 @@ function App({
   logout,
   isLoading,
   getUsersData,
+  isActivated,
 }) {
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -26,9 +28,12 @@ function App({
   if (isAuth) {
     return (
       <div className="App">
-        <p>{userEmail}</p>
+        <p>Your Email - {userEmail}</p>
+        <p>isActivated - {isActivated ? "True" : "False"}</p>
         <button onClick={logout}>Logout</button>
         <button onClick={getUsersData}>Get users</button>
+
+        <UsersData />
       </div>
     );
   }
@@ -37,6 +42,7 @@ function App({
     <div className="App">
       <header className="App-header">
         <p>{isAuth ? `TRUE ${userEmail}` : "FALSE"}</p>
+        <button onClick={getUsersData}>Get users</button>
         <Form />
       </header>
     </div>
@@ -48,6 +54,7 @@ const mapStateToProps = (state) => {
     isLoading: state.isLoading,
     isAuth: state.isAuth,
     userEmail: state.user?.email,
+    isActivated: state.user?.isActivated,
   };
 };
 
