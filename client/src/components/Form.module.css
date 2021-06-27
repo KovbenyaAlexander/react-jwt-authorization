@@ -1,0 +1,9 @@
+.formWrapper {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.buttonsWrapper {
+  display: flex;
+  justify-content: space-around;
+}

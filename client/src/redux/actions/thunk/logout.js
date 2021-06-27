@@ -1,5 +1,6 @@
 import AuthService from "../../../services/AuthService";
 import { setAuth, setUser, setLoadingStatus } from "../actions";
+import M from "materialize-css";
 
 const logout = () => {
   return (dispatch) => {

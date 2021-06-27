@@ -47,8 +47,10 @@ function App({
         <span>signed in:</span>
         <span>{isAuth ? `TRUE ${userEmail}` : "FALSE"}</span>
         <hr />
-        <button onClick={getUsersData}>Get users</button>
         <Form />
+        <hr />
+        <p>does not work here because not signed in</p>
+        <button onClick={getUsersData}>Get users</button>
       </header>
     </div>
   );
