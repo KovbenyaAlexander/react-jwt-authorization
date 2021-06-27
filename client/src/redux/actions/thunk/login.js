@@ -2,22 +2,18 @@ import AuthService from "../../../services/AuthService";
 import { setAuth, setUser, setLoadingStatus } from "../actions";
 
 const login = (email, password) => {
-  return (dispatch) => {
-    dispatch(setLoadingStatus(true));
+  return async (dispatch) => {
     try {
-      const response = AuthService.login(email, password);
-      response.then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.data.accesToken);
-        dispatch(setAuth(true));
-        dispatch(setUser(response.data.user));
-        dispatch(setLoadingStatus(false));
-      });
+      dispatch(setLoadingStatus(true));
+      const response = await AuthService.login(email, password);
+      localStorage.setItem("token", response.data.accesToken);
+      dispatch(setAuth(true));
+      dispatch(setUser(response.data.user));
     } catch (e) {
-      dispatch(setLoadingStatus(false));
       console.log(e);
       console.log(e?.response?.data?.message);
     }
+    dispatch(setLoadingStatus(false));
   };
 };
 

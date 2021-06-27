@@ -6,10 +6,10 @@ const UsersData = ({ usersData }) => {
     return null;
   }
 
-  const data = usersData.map((user) => {
+  const data = usersData.map((user, i) => {
     return (
-      <p>
-        {user.email} isActivated-
+      <p key={i}>
+        {user.email} email confirmed-
         {user.isActivated ? "True" : "False"}
       </p>
     );

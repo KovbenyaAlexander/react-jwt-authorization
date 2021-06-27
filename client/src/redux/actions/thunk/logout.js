@@ -12,7 +12,7 @@ const logout = () => {
       dispatch(setLoadingStatus(false));
     } catch (e) {
       console.log(e);
-    } finally {
+      dispatch(setLoadingStatus(false));
     }
   };
 };

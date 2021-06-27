@@ -17,9 +17,8 @@ const checkAuth = () => {
       });
     } catch (e) {
       console.log(e);
-    } finally {
-      dispatch(setLoadingStatus(false));
     }
+    dispatch(setLoadingStatus(false));
   };
 };
 

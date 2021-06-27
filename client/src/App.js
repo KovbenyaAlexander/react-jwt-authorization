@@ -28,8 +28,11 @@ function App({
   if (isAuth) {
     return (
       <div className="App">
+        <span>signed in:</span>
+        <span>{isAuth ? "TRUE" : "FALSE"}</span>
+        <hr />
         <p>Your Email - {userEmail}</p>
-        <p>isActivated - {isActivated ? "True" : "False"}</p>
+        <p>email confirmed - {isActivated ? "True" : "False"}</p>
         <button onClick={logout}>Logout</button>
         <button onClick={getUsersData}>Get users</button>
 
@@ -41,7 +44,9 @@ function App({
   return (
     <div className="App">
       <header className="App-header">
-        <p>{isAuth ? `TRUE ${userEmail}` : "FALSE"}</p>
+        <span>signed in:</span>
+        <span>{isAuth ? `TRUE ${userEmail}` : "FALSE"}</span>
+        <hr />
         <button onClick={getUsersData}>Get users</button>
         <Form />
       </header>
