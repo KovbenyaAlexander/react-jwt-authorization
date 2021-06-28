@@ -1,18 +1,17 @@
 import AuthService from "../../../services/AuthService";
 import { setAuth, setUser, setLoadingStatus } from "../actions";
-import M from "materialize-css";
 
 const logout = () => {
   return (dispatch) => {
     dispatch(setLoadingStatus(true));
     try {
-      const response = AuthService.logout();
+      AuthService.logout();
       localStorage.removeItem("token");
       dispatch(setAuth(false));
       dispatch(setUser({}));
-      dispatch(setLoadingStatus(false));
     } catch (e) {
       console.log(e);
+    } finally {
       dispatch(setLoadingStatus(false));
     }
   };

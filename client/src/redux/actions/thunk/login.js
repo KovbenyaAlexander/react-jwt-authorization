@@ -19,7 +19,7 @@ const login = (email, password) => {
     try {
       dispatch(setLoadingStatus(true));
       const response = await AuthService.login(email, password);
-      localStorage.setItem("token", response.data.accesToken);
+      localStorage.setItem("token", response.data.accessToken);
       dispatch(setAuth(true));
       dispatch(setUser(response.data.user));
       M.toast({ html: "login successful" });
@@ -29,8 +29,9 @@ const login = (email, password) => {
       } else {
         M.toast(`something went wrong`);
       }
+    } finally {
+      dispatch(setLoadingStatus(false));
     }
-    dispatch(setLoadingStatus(false));
   };
 };
 

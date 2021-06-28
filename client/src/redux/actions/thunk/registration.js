@@ -19,7 +19,7 @@ const registration = (email, password) => {
     try {
       dispatch(setLoadingStatus(true));
       const response = await AuthService.registration(email, password);
-      localStorage.setItem("token", response.data.accesToken);
+      localStorage.setItem("token", response.data.accessToken);
       dispatch(setAuth(true));
       dispatch(setUser(response.data.user));
       M.toast({ html: "Registration successful" });
@@ -30,8 +30,9 @@ const registration = (email, password) => {
       } else {
         M.toast(`something went wrong`);
       }
+    } finally {
+      dispatch(setLoadingStatus(false));
     }
-    dispatch(setLoadingStatus(false));
   };
 };
 

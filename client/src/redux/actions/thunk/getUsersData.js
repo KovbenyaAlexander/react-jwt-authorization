@@ -9,6 +9,8 @@ const getUsersData = () => {
       dispatch(setUsersData(response.data));
     } catch (e) {
       console.log(e);
+    } finally {
+      dispatch(setLoadingStatus(false));
     }
     dispatch(setLoadingStatus(false));
   };
