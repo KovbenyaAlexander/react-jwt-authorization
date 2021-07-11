@@ -11,6 +11,11 @@ const Form = ({ login, registration }) => {
 
   return (
     <div className={css.formWrapper}>
+      <div className={`card-panel grey lighten-5 z-depth-1 ${css.card}`}>
+        If you use real mail, you will receive an email with a link to verify
+        your account
+      </div>
+
       <div className={`input-field col s6 `}>
         <input
           autoComplete="off"
@@ -47,6 +52,7 @@ const Form = ({ login, registration }) => {
           Registration
         </button>
       </div>
+      <p></p>
     </div>
   );
 };

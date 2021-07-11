@@ -5,16 +5,11 @@ import { connect } from "react-redux";
 import logout from "./redux/actions/thunk/logout";
 import getUsersData from "./redux/actions/thunk/getUsersData";
 import UsersData from "./components/UsersData";
+import Profile from "./components/Profile";
+import Loader from "./components/Loader";
+import "./App.css";
 
-function App({
-  isAuth,
-  checkAuth,
-  userEmail,
-  logout,
-  isLoading,
-  getUsersData,
-  isActivated,
-}) {
+function App({ isAuth, checkAuth, isLoading }) {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       checkAuth();
@@ -22,20 +17,13 @@ function App({
   }, []);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   if (isAuth) {
     return (
       <div className="App">
-        <span>signed in:</span>
-        <span>{isAuth ? "TRUE" : "FALSE"}</span>
-        <hr />
-        <p>Your Email - {userEmail}</p>
-        <p>email confirmed - {isActivated ? "True" : "False"}</p>
-        <button onClick={logout}>Logout</button>
-        <button onClick={getUsersData}>Get users</button>
-
+        <Profile />
         <UsersData />
       </div>
     );
@@ -43,15 +31,7 @@ function App({
 
   return (
     <div className="App">
-      <header className="App-header">
-        <span>signed in:</span>
-        <span>{isAuth ? `TRUE ${userEmail}` : "FALSE"}</span>
-        <hr />
-        <Form />
-        <hr />
-        <p>does not work here because not signed in</p>
-        <button onClick={getUsersData}>Get users</button>
-      </header>
+      <Form />
     </div>
   );
 }
