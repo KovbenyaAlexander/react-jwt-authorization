@@ -10,18 +10,20 @@ const Profile = ({ user, getUsersData, logout }) => {
       <div className={css.Profile}>
         <div className={`card-panel grey lighten-5 z-depth-1 ${css.card}`}>
           <table className={`${css.table} highlight`}>
-            <tr>
-              <td>Your Email</td>
-              <td>{email}</td>
-            </tr>
-            <tr>
-              <td>Your id</td>
-              <td>{id}</td>
-            </tr>
-            <tr>
-              <td>Is your email confirmed</td>
-              <td>{isActivated ? "yes" : "no"}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>Your Email</td>
+                <td>{email}</td>
+              </tr>
+              <tr>
+                <td>Your id</td>
+                <td>{id}</td>
+              </tr>
+              <tr>
+                <td>Is your email confirmed</td>
+                <td>{isActivated ? "yes" : "no"}</td>
+              </tr>
+            </tbody>
           </table>
 
           <button
