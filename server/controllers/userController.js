@@ -9,10 +9,6 @@ class UserController {
         return next(ApiError.BadRequest("Validation error", errors.array));
       }
       const { email, password } = req.body;
-
-      console.log(`email - ${email}`);
-      console.log(`pass - ${password}`);
-
       const userData = await userService.registration(email, password);
 
       res.cookie("refreshToken", userData.refreshToken, {

@@ -24,7 +24,6 @@ const registration = (email, password) => {
       dispatch(setUser(response.data.user));
       M.toast({ html: "Registration successful" });
     } catch (e) {
-      console.log(`Already exist?`);
       if (e?.response?.data?.message) {
         M.toast({ html: e?.response?.data?.message });
       } else {
